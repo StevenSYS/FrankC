@@ -19,8 +19,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "progInfo.h"
-#include "tools.h"
+#define sizeofArray(_array) sizeof(_array) / sizeof(*_array)
+#define includesString(_str1, _str2) strstr(_str1, _str2) != NULL
+#define arrayRandom(_array) _array[rand() % sizeofArray(_array)]
+
+#define MAX_FRANK_STRLENGTH 255
 
 char frank_response[MAX_FRANK_STRLENGTH] = "Frank is waiting...";
 
@@ -153,10 +156,6 @@ const char *boopingSnootWords[] = {
 };
 
 static char isBoopingSnoot(char *input) {
-	#ifdef ENABLE_DEBUGGING
-	printf("DEBUG: frank_isBoopingSnoot(\"%s\");\n",input);
-	#endif
-	
 	char found = 0;
 	
 	for (unsigned char i = 0; i < sizeofArray(boopingSnootWords); i++) {
@@ -170,10 +169,6 @@ static char isBoopingSnoot(char *input) {
 }
 
 static char isDenyingRat(char *input) {
-	#ifdef ENABLE_DEBUGGING
-	printf("DEBUG: frank_isDenyingRat(\"%s\");\n",input);
-	#endif
-	
 	char foundVariation = 0;
 	
 	for (unsigned char i = 0; i < sizeofArray(typoVariations); i++) {
@@ -182,10 +177,6 @@ static char isDenyingRat(char *input) {
 			break;
 		}
 	}
-	
-	#ifdef ENABLE_DEBUGGING
-	printf("DEBUG: foundVariation == %i\n", foundVariation);
-	#endif
 	
 	return ( /* This is terrible */
 		(includesString(input, "deny") && includesString(input, "rat")) ||
@@ -209,30 +200,17 @@ static char isDenyingRat(char *input) {
 	);
 }
 
-void frank_handleFrankChat(char *input) {
-	#ifdef ENABLE_DEBUGGING
-	printf("DEBUG: frank_handleFrankChat(\"%s\");\n",input);
-	#endif
-	
+void frank_chat(char *input) {
 	if (isLocked) {
 		if (includesString(input, "dingus")) {
 			isLocked = 0;
-			#ifdef ENABLE_DEBUGGING
-			printf("DEBUG: isLocked == %i\n", isLocked);
-			#endif
 			angerLevel = 0;
-			#ifdef ENABLE_DEBUGGING
-			printf("DEBUG: angerLevel == %i\n", angerLevel);
-			#endif
 			strcpy(frank_response, "Frank is back. What do you want?");
 		} else {
 			strcpy(frank_response, "Frank is digesting. You need to say the magic word to wake her up.");
 		}
 	} else if (isDenyingRat(input)) { /* In the original, it checks for "rat" and "give" or "feed", before checking this */
 		angerLevel++;
-		#ifdef ENABLE_DEBUGGING
-		printf("DEBUG: angerLevel == %i\n", angerLevel);
-		#endif
 		if (angerLevel < angerThreshold) {
 			strcpy(frank_response, arrayRandom(sadResponses));
 		} else {
@@ -242,20 +220,11 @@ void frank_handleFrankChat(char *input) {
 		if (rand() < RAND_MAX / 10) {
 			if (angerLevel - 1 > 0) {
 				angerLevel -= 1;
-				#ifdef ENABLE_DEBUGGING
-				printf("DEBUG: angerLevel == %i\n", angerLevel);
-				#endif
 			} else {
 				angerLevel = 0;
-				#ifdef ENABLE_DEBUGGING
-				printf("DEBUG: angerLevel == %i\n", angerLevel);
-				#endif
 			}
 			strcpy(frank_response, "*Frank snatches the rat and drags it around for 2 hours*");
 			isLocked = 1;
-			#ifdef ENABLE_DEBUGGING
-			printf("DEBUG: isLocked == %i\n", isLocked);
-			#endif
 			strcat(frank_response, "\n Frank is digesting. You need to say the magic word to wake her up.");
 		} else {
 			strcpy(frank_response, arrayRandom(feedingFailureResponses));

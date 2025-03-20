@@ -15,10 +15,10 @@
 	If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef __FRANK__
-#define __FRANK__
+#ifndef __LIBFRANK__
+#define __LIBFRANK__
 
-void frank_handleFrankChat(char *input);
+void frank_chat(char *input);
 
 extern char frank_response[];
 

@@ -19,16 +19,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <libFrank/frank.h>
 #if _WIN32
 #include <windows.h>
 #else
 #include <time.h>
 #endif
 
-#include "frank.h"
 #include "frankArt.h"
-#include "tools.h"
 #include "progInfo.h"
+
+#define sizeofArray(_array) sizeof(_array) / sizeof(*_array)
 
 char run = 1;
 
@@ -59,9 +60,6 @@ int main() {
 	}
 	
 	printf(PROGRAM_NAME " v" PROGRAM_VERSION " - The Frank Chatbot from dingusland.fun ported to C\n");
-	#ifdef ENABLE_DEBUGGING
-		printf("Debugging Version\n");
-	#endif
 	printf("Source Code: https://github.com/StevenSYS/frankc\n");
 	
 	for (unsigned char i = 0; i < sizeofArray(frankArt_frank); i++) {
@@ -77,7 +75,7 @@ int main() {
 		/* https://stackoverflow.com/questions/1247989/how-do-you-allow-spaces-to-be-entered-using-scanf */	
 		if (strlen(input) > 1 && input[strlen(input) - 1] == '\n') {
 			input[strlen(input) - 1] = '\0';
-			frank_handleFrankChat(stringToLower(input));
+			frank_chat(stringToLower(input));
 		} else if (strlen(input) <= 1) {
 			run = 0;
 		}
