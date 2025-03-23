@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.25)
 set(PROGRAM_NAME "FrankC")
 
-option(BUILD_FOR_DOS "Builds ${PROGRAM_NAME} for DOS using DJGPP" off)
-option(BUILD_FOR_OLDWIN "Builds ${PROGRAM_NAME} using msvcrt20 (Mingw-w64 Required)" off)
-option(BUILD_SHARED_LIBS "Builds shared version of libFrank" off)
-option(BUILD_ONLY_LIBRARY "Builds only libFrank" off)
+option(BUILD_FOR_DOS "Build ${PROGRAM_NAME} for DOS using DJGPP" off)
+option(BUILD_FOR_OLDWIN "Build ${PROGRAM_NAME} using msvcrt20 (Mingw-w64 Required)" off)
+option(BUILD_SHARED_LIBS "Build shared version of libFrank" off)
+option(BUILD_ONLY_LIBRARY "Build only libFrank" off)
 
 project(FrankC LANGUAGES C VERSION 1.1)
 
