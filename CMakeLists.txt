@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.25)
-set(PROGRAM_NAME "FrankC")
 
 option(BUILD_FOR_DOS "Build ${PROGRAM_NAME} for DOS using DJGPP" off)
 option(BUILD_FOR_OLDWIN "Build ${PROGRAM_NAME} using msvcrt20 (Mingw-w64 Required)" off)
