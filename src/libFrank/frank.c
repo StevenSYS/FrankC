@@ -25,9 +25,9 @@
 #define includesString(_str1, _str2) strstr(_str1, _str2) != NULL
 #define arrayRandom(_array) _array[rand() % sizeofArray(_array)]
 
-#define MAX_FRANK_STRLENGTH 255
+#define LENGTH_STRING 255
 
-char frank_response[MAX_FRANK_STRLENGTH] = "Frank is waiting...";
+char frank_response[LENGTH_STRING] = "Frank is waiting...";
 
 char isLocked = 0;
 unsigned char angerLevel = 0;

@@ -5,7 +5,7 @@ option(BUILD_FOR_OLDWIN "Build ${PROGRAM_NAME} using msvcrt20 (Mingw-w64 Require
 option(BUILD_SHARED_LIBS "Build shared version of libFrank" off)
 option(BUILD_ONLY_LIBRARY "Build only libFrank" off)
 
-project(FrankC LANGUAGES C VERSION 1.1)
+project(FrankC LANGUAGES C VERSION 1.2)
 
 if(BUILD_FOR_DOS)
 	set(CMAKE_C_COMPILER "i586-pc-msdosdjgpp-gcc")

@@ -21,6 +21,8 @@
 #define PROGRAM_NAME "@PROJECT_NAME@"
 #define PROGRAM_VERSION "@PROJECT_VERSION@"
 
-#define MAX_STRLENGTH 100
+#define LENGTH_INPUT 100
+
+#define URL_SOURCE "https://github.com/StevenSYS/frankc"
 
 #endif
