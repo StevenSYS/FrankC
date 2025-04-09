@@ -20,7 +20,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <libFrank/frank.h>
-#if _WIN32
+#ifdef _WIN32
 #include <windows.h>
 #else
 #include <time.h>
@@ -46,7 +46,7 @@ char *stringToLower(char *str) {
 }
 
 int main() {
-	#if _WIN32
+	#ifdef _WIN32
 	srand(GetTickCount());
 	#else
 	srand(time(NULL));
