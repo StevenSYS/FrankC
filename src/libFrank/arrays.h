@@ -15,12 +15,12 @@
 	If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef __LIBFRANK_LISTS__
-#define __LIBFRANK_LISTS__
+#ifndef __LIBFRANK_ARRAYS__
+#define __LIBFRANK_ARRAYS__
 
-/* Don't include this header file into your program, it's only used for the library itself */
+/* Don't include this header file into a program, it's only used for the library itself */
 
-const char *typoVariations[] = {
+const char *frankArrays_typoVariations[] = {
 	"can't",
 	"cant",
 	"won't",
@@ -29,7 +29,7 @@ const char *typoVariations[] = {
 	"dont"
 };
 
-const char *positiveRatResponses[] = {
+const char *frankArrays_positiveRatResponses[] = {
 	"Frank is interested.",
 	"Frank edges closer, tongue flicking.",
 	"Frank's pupils dilate with excitement.",
@@ -39,20 +39,20 @@ const char *positiveRatResponses[] = {
 	"Frank slithers forward, very intrigued.",
 };
 
-const char *highAngerResponses[] = {
+const char *frankArrays_highAngerResponses[] = {
 	"Frank hisses fiercely, her eyes narrowing with disdain.",
 	"Frank coils tightly, flicking her tongue in irritation.",
 	"Frank's scales ripple as she fixes you with a cold glare.",
 	"Frank flicks her tongue sharply, showing clear displeasure."
 };
 
-const char *feedingFailureResponses[] = {
+const char *frankArrays_feedingFailureResponses[] = {
 	"Frank misses completely.",
 	"Frank lunges forward and bonks the glass.",
 	"Frank strikes but bites herself."
 };
 
-const char *neutralResponses[] = {
+const char *frankArrays_neutralResponses[] = {
 	"Frank says nothing.",
 	"Frank says nothing.",
 	"Frank says nothing.",
@@ -119,7 +119,7 @@ const char *neutralResponses[] = {
 	"Frank is doing her best to look uninterested."
 };
 
-const char *sadResponses[] = {
+const char *frankArrays_sadResponses[] = {
 	"Frank coils up, heartbroken.",
 	"Frank hisses softly and flicks her tongue.",
 	"Frank stares at you with a cold, silent glare.",
@@ -127,7 +127,7 @@ const char *sadResponses[] = {
 	"Frank disappears into a tight coil, sulking."
 };
 
-const char *boopingSnootResponses[] = {
+const char *frankArrays_boopingSnootResponses[] = {
 	"Frank recoils instantly, her eyes narrowing.",
 	"Frank hisses and coils back.",
 	"Frank flinches, her gaze filled with betrayal.",
@@ -137,7 +137,7 @@ const char *boopingSnootResponses[] = {
 	"Frank actually dislikes snoot boops."
 };
 
-const char *boopingSnootWords[] = {
+const char *frankArrays_boopingSnootWords[] = {
 	"boop",
 	"snoot boop",
 	"booping snoot",

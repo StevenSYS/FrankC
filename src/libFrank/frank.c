@@ -19,7 +19,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "lists.h"
+#include "arrays.h"
 
 #define sizeofArray(_array) sizeof(_array) / sizeof(*_array)
 #define includesString(_str1, _str2) strstr(_str1, _str2) != NULL
@@ -36,8 +36,8 @@ unsigned char angerLevel = 0;
 static char isBoopingSnoot(char *input) {
 	char found = 0;
 	
-	for (unsigned char i = 0; i < sizeofArray(boopingSnootWords); i++) {
-		if (includesString(input, boopingSnootWords[i])) {
+	for (unsigned char i = 0; i < sizeofArray(frankArrays_boopingSnootWords); i++) {
+		if (includesString(input, frankArrays_boopingSnootWords[i])) {
 			found = 1;
 			break;
 		}
@@ -49,8 +49,8 @@ static char isBoopingSnoot(char *input) {
 static char isDenyingRat(char *input) {
 	char foundVariation = 0;
 	
-	for (unsigned char i = 0; i < sizeofArray(typoVariations); i++) {
-		if (includesString(input, typoVariations[i])) {
+	for (unsigned char i = 0; i < sizeofArray(frankArrays_typoVariations); i++) {
+		if (includesString(input, frankArrays_typoVariations[i])) {
 			foundVariation = 1;
 			break;
 		}
@@ -90,9 +90,9 @@ void frank_chat(char *input) {
 	} else if (isDenyingRat(input)) { /* In the original, it checks for "rat" and "give" or "feed", before checking this */
 		angerLevel++;
 		if (angerLevel < LIBFRANK_ANGER_THRESHOLD) {
-			strcpy(frank_response, arrayRandom(sadResponses));
+			strcpy(frank_response, arrayRandom(frankArrays_sadResponses));
 		} else {
-			strcpy(frank_response, arrayRandom(highAngerResponses));
+			strcpy(frank_response, arrayRandom(frankArrays_highAngerResponses));
 		}
 	} else if (includesString(input, "rat") && (includesString(input, "give") || includesString(input, "feed"))) {
 		if (rand() < RAND_MAX / 10) {
@@ -105,18 +105,18 @@ void frank_chat(char *input) {
 			isLocked = 1;
 			strcat(frank_response, "\n Frank is digesting. You need to say the magic word to wake her up.");
 		} else {
-			strcpy(frank_response, arrayRandom(feedingFailureResponses));
+			strcpy(frank_response, arrayRandom(frankArrays_feedingFailureResponses));
 		}
 	} else if (angerLevel >= LIBFRANK_ANGER_THRESHOLD) {
-		strcpy(frank_response, arrayRandom(highAngerResponses));
+		strcpy(frank_response, arrayRandom(frankArrays_highAngerResponses));
 	} else if (includesString(input, "quail")) {
 		strcpy(frank_response, "FRANK IS BANNED FROM QUAILS.");
 	} else if (isBoopingSnoot(input)) {
-		strcpy(frank_response, arrayRandom(boopingSnootResponses));
+		strcpy(frank_response, arrayRandom(frankArrays_boopingSnootResponses));
 	} else if (includesString(input, "rat")) {
-		strcpy(frank_response, arrayRandom(positiveRatResponses));
+		strcpy(frank_response, arrayRandom(frankArrays_positiveRatResponses));
 	} else {
-		strcpy(frank_response, arrayRandom(neutralResponses));
+		strcpy(frank_response, arrayRandom(frankArrays_neutralResponses));
 	}
 	
 	return;
