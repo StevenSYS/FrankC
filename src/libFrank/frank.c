@@ -25,13 +25,13 @@
 #define includesString(_str1, _str2) strstr(_str1, _str2) != NULL
 #define arrayRandom(_array) _array[rand() % sizeofArray(_array)]
 
-#define LENGTH_STRING 255
+#define LIBFRANK_LENGTH_STRING 255
+#define LIBFRANK_ANGER_THRESHOLD 5
 
-char frank_response[LENGTH_STRING] = "Frank is waiting...";
-
+char frank_response[LIBFRANK_LENGTH_STRING] = "Frank is waiting...";
 char isLocked = 0;
+
 unsigned char angerLevel = 0;
-const unsigned char angerThreshold = 5;
 
 static char isBoopingSnoot(char *input) {
 	char found = 0;
@@ -89,7 +89,7 @@ void frank_chat(char *input) {
 		}
 	} else if (isDenyingRat(input)) { /* In the original, it checks for "rat" and "give" or "feed", before checking this */
 		angerLevel++;
-		if (angerLevel < angerThreshold) {
+		if (angerLevel < LIBFRANK_ANGER_THRESHOLD) {
 			strcpy(frank_response, arrayRandom(sadResponses));
 		} else {
 			strcpy(frank_response, arrayRandom(highAngerResponses));
@@ -107,7 +107,7 @@ void frank_chat(char *input) {
 		} else {
 			strcpy(frank_response, arrayRandom(feedingFailureResponses));
 		}
-	} else if (angerLevel >= angerThreshold) {
+	} else if (angerLevel >= LIBFRANK_ANGER_THRESHOLD) {
 		strcpy(frank_response, arrayRandom(highAngerResponses));
 	} else if (includesString(input, "quail")) {
 		strcpy(frank_response, "FRANK IS BANNED FROM QUAILS.");
@@ -120,4 +120,9 @@ void frank_chat(char *input) {
 	}
 	
 	return;
+}
+
+/* This function is here so you can use libFrank from Python */
+char *frank_getResponse() {
+	return frank_response;
 }

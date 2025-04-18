@@ -9,7 +9,6 @@ project(FrankC LANGUAGES C VERSION 1.2)
 
 if(BUILD_FOR_DOS)
 	set(CMAKE_C_COMPILER "i586-pc-msdosdjgpp-gcc")
-	set(CMAKE_CXX_COMPILER "i586-pc-msdosdjgpp-g++")
 elseif(BUILD_FOR_OLDWIN)
 	set(CMAKE_C_FLAGS "-mcrtdll=msvcrt20 -march=i586")
 endif()
