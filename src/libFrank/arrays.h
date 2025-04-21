@@ -15,8 +15,8 @@
 	If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef __LIBFRANK__
-#define __LIBFRANK__
+#ifndef __LIBFRANK_ARRAYS__
+#define __LIBFRANK_ARRAYS__
 
 /* Don't include this header file into a program, it's only used for the library itself */
 
