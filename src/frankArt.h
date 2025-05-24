@@ -19,7 +19,7 @@
 #define __FRANKART__
 
 /* https://manytools.org/hacker-tools/convert-images-to-ascii-art/ */
-const static char *frankArt[] = {
+static const char *frankArt[] = {
 	"                                                          (@@@@@@",
 	"                      & (%# # @,@  &.     ......*&&   /(.@#   &&%",
 	"                  (  .%&&&@, , ,,,@%%%%, ,   .@& ...&&&&&&&.",
