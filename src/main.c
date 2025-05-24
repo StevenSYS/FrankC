@@ -62,8 +62,8 @@ int main() {
 	printf(PROGRAM_NAME " v" PROGRAM_VERSION " - The Frank Chatbot from dingusland.fun ported to C\n");
 	printf("Source Code: " URL_SOURCE "\n");
 	
-	for (unsigned char i = 0; i < sizeofArray(frankArt_frank); i++) {
-		printf("%s\n", frankArt_frank[i]);
+	for (unsigned char i = 0; i < sizeofArray(frankArt); i++) {
+		printf("%s\n", frankArt[i]);
 	}
 	
 	printf("\nPress enter/return with no text entered to quit\n");
@@ -72,7 +72,7 @@ int main() {
 		printf("\n%s\nAsk Frank something: ", frank_response);
 		fgets(input, LENGTH_INPUT, stdin);
 		
-		/* https://stackoverflow.com/questions/1247989/how-do-you-allow-spaces-to-be-entered-using-scanf */	
+		/* https://stackoverflow.com/questions/1247989/how-do-you-allow-spaces-to-be-entered-using-scanf */
 		if (strlen(input) > 1 && input[strlen(input) - 1] == '\n') {
 			input[strlen(input) - 1] = '\0';
 			frank_chat(stringToLower(input));

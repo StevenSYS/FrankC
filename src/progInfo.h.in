@@ -23,6 +23,6 @@
 
 #define LENGTH_INPUT 100
 
-#define URL_SOURCE "https://github.com/StevenSYS/frankc"
+#define URL_SOURCE "https://github.com/StevenSYS/FrankC"
 
 #endif
