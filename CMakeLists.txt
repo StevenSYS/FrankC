@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(FrankC LANGUAGES C VERSION 1.2)
+project(FrankC LANGUAGES C VERSION 1.21)
 
 option(BUILD_FOR_DOS "Build ${PROJECT_NAME} for DOS using DJGPP" OFF)
 option(BUILD_FOR_OLDWIN "Build ${PROJECT_NAME} using msvcrt20 (Mingw-w64 Required)" OFF)
