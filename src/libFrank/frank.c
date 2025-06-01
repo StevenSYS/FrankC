@@ -78,7 +78,7 @@ void frank_chat(char *input) {
 			strcpy(frank_response, arrayRandom(highAngerResponses));
 		}
 	} else if (includesString(input, "rat") && (includesString(input, "give") || includesString(input, "feed"))) {
-		if (rand() < RAND_MAX / 10) {
+		if (rand() % 10 == 1) {
 			if (angerLevel - 1 > 0) {
 				angerLevel -= 1;
 			} else {
