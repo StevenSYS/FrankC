@@ -10,7 +10,7 @@ option(BUILD_ONLY_LIBRARY "Build only libFrank" OFF)
 if(BUILD_FOR_DOS)
 	set(CMAKE_C_COMPILER "i586-pc-msdosdjgpp-gcc")
 elseif(BUILD_FOR_OLDWIN AND WIN32)
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mcrtdll=msvcrt20 -march=i586")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mcrtdll=msvcrt20 -march=i586 -fcf-protection=none")
 endif()
 
 set(CMAKE_C_FLAGS_DEBUG "-g -Wall")

@@ -11,7 +11,7 @@
 #define LIBFRANK_LENGTH_STRING 255
 #define LIBFRANK_ANGER_THRESHOLD 5
 
-char frank_response[LIBFRANK_LENGTH_STRING] = "Frank is waiting...";
+char *frank_response = "Frank is waiting...";
 static char isLocked = 0;
 
 static unsigned char angerLevel = 0;
@@ -66,16 +66,16 @@ void frank_chat(char *input) {
 		if (includesString(input, "dingus")) {
 			isLocked = 0;
 			angerLevel = 0;
-			strcpy(frank_response, "Frank is back. What do you want?");
+			frank_response = "Frank is back. What do you want?";
 		} else {
-			strcpy(frank_response, "Frank is digesting. You need to say the magic word to wake her up.");
+			frank_response = "Frank is digesting. You need to say the magic word to wake her up.";
 		}
 	} else if (isDenyingRat(input)) { /* In the original, it checks for "rat" and "give" or "feed", before checking this */
 		angerLevel++;
 		if (angerLevel < LIBFRANK_ANGER_THRESHOLD) {
-			strcpy(frank_response, arrayRandom(sadResponses));
+			frank_response = (char *)arrayRandom(sadResponses);
 		} else {
-			strcpy(frank_response, arrayRandom(highAngerResponses));
+			frank_response = (char *)arrayRandom(highAngerResponses);
 		}
 	} else if (includesString(input, "rat") && (includesString(input, "give") || includesString(input, "feed"))) {
 		if (rand() % 10 == 1) {
@@ -84,24 +84,23 @@ void frank_chat(char *input) {
 			} else {
 				angerLevel = 0;
 			}
-			strcpy(frank_response, "*Frank snatches the rat and drags it around for 2 hours*");
+			frank_response = "*Frank snatches the rat and drags it around for 2 hours*";
 			isLocked = 1;
-			strcat(frank_response, "\n Frank is digesting. You need to say the magic word to wake her up.");
+			frank_response = "\n Frank is digesting. You need to say the magic word to wake her up.";
 		} else {
-			strcpy(frank_response, arrayRandom(feedingFailureResponses));
+			frank_response = (char *)arrayRandom(feedingFailureResponses);
 		}
 	} else if (angerLevel >= LIBFRANK_ANGER_THRESHOLD) {
-		strcpy(frank_response, arrayRandom(highAngerResponses));
+		frank_response = (char *)arrayRandom(highAngerResponses);
 	} else if (includesString(input, "quail")) {
-		strcpy(frank_response, "FRANK IS BANNED FROM QUAILS.");
+		frank_response = "FRANK IS BANNED FROM QUAILS.";
 	} else if (isBoopingSnoot(input)) {
-		strcpy(frank_response, arrayRandom(boopingSnootResponses));
+		frank_response = (char *)arrayRandom(boopingSnootResponses);
 	} else if (includesString(input, "rat")) {
-		strcpy(frank_response, arrayRandom(positiveRatResponses));
+		frank_response = (char *)arrayRandom(positiveRatResponses);
 	} else {
-		strcpy(frank_response, arrayRandom(neutralResponses));
+		frank_response = (char *)arrayRandom(neutralResponses);
 	}
-	
 	return;
 }
 
