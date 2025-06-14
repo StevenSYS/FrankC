@@ -6,9 +6,8 @@
 
 #define sizeofArray(_array) sizeof(_array) / sizeof(*_array)
 #define includesString(_str1, _str2) strstr(_str1, _str2) != NULL
-#define arrayRandom(_array) _array[rand() % sizeofArray(_array)]
+#define arrayRandom(_array) (char *)_array[rand() % sizeofArray(_array)]
 
-#define LIBFRANK_LENGTH_STRING 255
 #define LIBFRANK_ANGER_THRESHOLD 5
 
 char *frank_response = "Frank is waiting...";
@@ -73,9 +72,9 @@ void frank_chat(char *input) {
 	} else if (isDenyingRat(input)) { /* In the original, it checks for "rat" and "give" or "feed", before checking this */
 		angerLevel++;
 		if (angerLevel < LIBFRANK_ANGER_THRESHOLD) {
-			frank_response = (char *)arrayRandom(sadResponses);
+			frank_response = arrayRandom(sadResponses);
 		} else {
-			frank_response = (char *)arrayRandom(highAngerResponses);
+			frank_response = arrayRandom(highAngerResponses);
 		}
 	} else if (includesString(input, "rat") && (includesString(input, "give") || includesString(input, "feed"))) {
 		if (rand() % 10 == 1) {
@@ -88,18 +87,18 @@ void frank_chat(char *input) {
 			isLocked = 1;
 			frank_response = "\n Frank is digesting. You need to say the magic word to wake her up.";
 		} else {
-			frank_response = (char *)arrayRandom(feedingFailureResponses);
+			frank_response = arrayRandom(feedingFailureResponses);
 		}
 	} else if (angerLevel >= LIBFRANK_ANGER_THRESHOLD) {
-		frank_response = (char *)arrayRandom(highAngerResponses);
+		frank_response = arrayRandom(highAngerResponses);
 	} else if (includesString(input, "quail")) {
 		frank_response = "FRANK IS BANNED FROM QUAILS.";
 	} else if (isBoopingSnoot(input)) {
-		frank_response = (char *)arrayRandom(boopingSnootResponses);
+		frank_response = arrayRandom(boopingSnootResponses);
 	} else if (includesString(input, "rat")) {
-		frank_response = (char *)arrayRandom(positiveRatResponses);
+		frank_response = arrayRandom(positiveRatResponses);
 	} else {
-		frank_response = (char *)arrayRandom(neutralResponses);
+		frank_response = arrayRandom(neutralResponses);
 	}
 	return;
 }
