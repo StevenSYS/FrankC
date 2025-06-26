@@ -1,7 +1,7 @@
 #ifndef __LIBFRANK_ARRAYS__
 #define __LIBFRANK_ARRAYS__
 
-/* Don't include this header file into a program, it's only used for the library itself */
+/* Don't include this header file into a program, it's only used in the library itself */
 
 static const char *typoVariations[] = {
 	"can't",
