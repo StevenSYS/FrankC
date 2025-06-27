@@ -3,9 +3,18 @@ cmake_minimum_required(VERSION 3.25)
 project(FrankC LANGUAGES C VERSION 1.21)
 
 option(BUILD_FOR_DOS "Build ${PROJECT_NAME} for DOS using DJGPP" OFF)
-option(BUILD_USING_MSVCRT20 "Build ${PROJECT_NAME} using msvcrt20 (Windows Compiler Required)" OFF)
 option(BUILD_SHARED_LIBS "Build shared version of libFrank" OFF)
 option(BUILD_ONLY_LIBRARY "Build only libFrank" OFF)
+option(BUILD_FOR_I586 "Build ${PROJECT_NAME} for i586 (Intel Pentium) or higher" OFF)
+# Windows Compiler Options
+option(BUILD_USING_MSVCRT20 "Build ${PROJECT_NAME} using msvcrt20 (Windows Compiler Only)" OFF)
+
+set(CMAKE_C_FLAGS_DEBUG "-g -Wall")
+set(CMAKE_C_FLAGS_RELEASE "-s -O2")
+
+if(BUILD_FOR_I586)
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -march=i586 -fcf-protection=none")
+endif()
 
 if(BUILD_FOR_DOS)
 	set(CMAKE_C_COMPILER "i586-pc-msdosdjgpp-gcc")
@@ -17,8 +26,6 @@ elseif(NOT WIN32 AND BUILD_USING_MSVCRT20)
 	message(FATAL_ERROR "To build using msvcrt20 you must be compiling for Windows")
 endif()
 
-set(CMAKE_C_FLAGS_DEBUG "-g -Wall")
-set(CMAKE_C_FLAGS_RELEASE "-s -O2")
 
 if(NOT BUILD_ONLY_LIBRARY)
 	file(GLOB SOURCE_FILES "src/*.c")
