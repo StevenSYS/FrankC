@@ -26,7 +26,6 @@ elseif(NOT WIN32 AND BUILD_USING_MSVCRT20)
 	message(FATAL_ERROR "To build using msvcrt20 you must be compiling for Windows")
 endif()
 
-
 if(NOT BUILD_ONLY_LIBRARY)
 	file(GLOB SOURCE_FILES "src/*.c")
 endif()
@@ -39,9 +38,7 @@ add_library(Frank src/libFrank/frank.c)
 
 if(NOT BUILD_ONLY_LIBRARY)
 	configure_file(src/progInfo.h.in ${CMAKE_CURRENT_SOURCE_DIR}/src/progInfo.h @ONLY)
-endif()
-
-if(NOT BUILD_ONLY_LIBRARY)
+	
 	add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 	target_link_libraries(${PROJECT_NAME} Frank)
 	if(BUILD_FOR_DOS)
