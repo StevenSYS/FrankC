@@ -4,15 +4,15 @@
 #include <ctype.h>
 #include <libFrank/frank.h>
 #ifdef _WIN32
-#include <windows.h>
+	#include <windows.h>
 #else
-#include <time.h>
+	#include <time.h>
 #endif
 
 #include "frankArt.h"
 #include "progInfo.h"
 
-#define sizeofArray(_array) sizeof(_array) / sizeof(*_array)
+#define SIZEOFARRAY(_array) sizeof(_array) / sizeof(*_array)
 
 char running = 1;
 
@@ -45,7 +45,7 @@ int main() {
 	printf(PROGRAM_NAME " v" PROGRAM_VERSION " - The Frank Chatbot from dingusland.fun ported to C\n");
 	printf("Source Code: " URL_SOURCE "\n");
 	
-	for (unsigned char i = 0; i < sizeofArray(frankArt); i++) {
+	for (unsigned char i = 0; i < SIZEOFARRAY(frankArt); i++) {
 		printf("%s\n", frankArt[i]);
 	}
 	
