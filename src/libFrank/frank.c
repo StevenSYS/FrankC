@@ -77,7 +77,7 @@ void frank_chat(char *input) {
 			frank_response = ARRAYRANDOM(highAngerResponses);
 		}
 	} else if (INCLUDESSTRING(input, "rat") && (INCLUDESSTRING(input, "give") || INCLUDESSTRING(input, "feed"))) {
-		if (rand() % 10 == 1) {
+		if (rand() % 10 == 0) {
 			if (angerLevel - 1 > 0) {
 				angerLevel -= 1;
 			} else {
