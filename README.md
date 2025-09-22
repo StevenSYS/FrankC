@@ -1,4 +1,4 @@
-# FrankC
+# [FrankC](https://github.com/StevenSYS/FrankC)
 The Frank Chatbot from [dingusland.fun](https://dingusland.fun/) ported to C
 
 Screenshots:
