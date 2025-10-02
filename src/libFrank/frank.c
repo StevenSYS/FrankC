@@ -4,21 +4,23 @@
 
 #include "arrays.h"
 
-#define SIZEOFARRAY(_array) sizeof(_array) / sizeof(*_array)
+#define SIZEOFARRAY(_array) sizeof(_array) / sizeof(_array[0])
 #define INCLUDESSTRING(_str1, _str2) strstr(_str1, _str2) != NULL
 #define ARRAYRANDOM(_array) (char *)_array[rand() % SIZEOFARRAY(_array)]
 
 #define LIBFRANK_ANGER_THRESHOLD 5
 
-char *frank_response = "Frank is waiting...";
 static char isLocked = 0;
 
 static unsigned char angerLevel = 0;
 
+char *frank_response = "Frank is waiting...";
+
 static char isBoopingSnoot(char *input) {
 	char found = 0;
+	unsigned char i;
 	
-	for (unsigned char i = 0; i < SIZEOFARRAY(boopingSnootWords); i++) {
+	for (i = 0; i < SIZEOFARRAY(boopingSnootWords); i++) {
 		if (INCLUDESSTRING(input, boopingSnootWords[i])) {
 			found = 1;
 			break;
@@ -30,8 +32,9 @@ static char isBoopingSnoot(char *input) {
 
 static char isDenyingRat(char *input) {
 	char foundVariation = 0;
+	unsigned char i;
 	
-	for (unsigned char i = 0; i < SIZEOFARRAY(typoVariations); i++) {
+	for (i = 0; i < SIZEOFARRAY(typoVariations); i++) {
 		if (INCLUDESSTRING(input, typoVariations[i])) {
 			foundVariation = 1;
 			break;

@@ -12,44 +12,45 @@
 #include "frankArt.h"
 #include "progInfo.h"
 
-#define SIZEOFARRAY(_array) sizeof(_array) / sizeof(*_array)
+#define SIZEOFARRAY(_array) sizeof(_array) / sizeof(_array[0])
 
-char running = 1;
+static char running = 1;
 
 /* https://stackoverflow.com/questions/59036713/how-do-i-convert-a-char-pointer-to-lower-case */
-char *stringToLower(char *str) {
+static char *stringToLower(char *str) {
 	char *ret = str;
 	
 	while (*str) {
 		*str = tolower(*str);
 		str++;
 	}
-	
 	return ret;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
+	char input[LENGTH_INPUT];
+	unsigned char i;
+	
 	#ifdef _WIN32
 	srand(GetTickCount());
 	#else
 	srand(time(NULL));
 	#endif
 	
-	char *input = malloc(LENGTH_INPUT);
-	
-	if (input == NULL) {
-		printf("Failed to allocate memory for variable\n");
-		return 1;
-	}
-	
 	printf(PROGRAM_NAME " v" PROGRAM_VERSION " - The Frank Chatbot from dingusland.fun ported to C\n");
 	printf("Source Code: " URL_SOURCE "\n");
 	
-	for (unsigned char i = 0; i < SIZEOFARRAY(frankArt); i++) {
+	for (i = 0; i < SIZEOFARRAY(frankArt); i++) {
 		printf("%s\n", frankArt[i]);
 	}
 	
 	printf("\nPress enter/return with no text entered to quit\n");
+	
+	if (argc > 1) {
+		if (strcmp(argv[1], "TEST\n") != 0) {
+			running = 0;
+		}
+	}
 	
 	while (running) {
 		printf("\n%s\nAsk Frank something: ", frank_response);
@@ -65,8 +66,6 @@ int main() {
 	}
 	
 	printf("\nQuitting...\n");
-	
-	free(input);
 	
 	return 0;
 }

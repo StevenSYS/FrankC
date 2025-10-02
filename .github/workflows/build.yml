@@ -1,0 +1,67 @@
+name: Build
+on: [push, pull_request]
+jobs:
+  build:
+    name: Build ${{matrix.build-targets.name}}
+    runs-on: ${{matrix.build-targets.os}}
+    strategy:
+      matrix:
+        build-targets:
+          - {
+            name: "Linux (x64)",
+            os: "ubuntu-latest",
+            cFlags: "",
+            uploadName: "FrankC-Linux64",
+            filename: "FrankC"
+          }
+          - {
+            name: "Windows (x64)",
+            os: "windows-latest",
+            cFlags: "",
+            uploadName: "FrankC-Win64",
+            filename: "FrankC.exe"
+          }
+          - {
+            name: "macOS (x64)",
+            os: "macos-13",
+            cFlags: "",
+            uploadName: "FrankC-Mac64",
+            filename: "FrankC"
+          }
+          - {
+            name: "macOS (arm64e)",
+            os: "macos-latest",
+            cFlags: "",
+            uploadName: "FrankC-MacARM",
+            filename: "FrankC"
+          }
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      
+      - name: Configure CMake
+        run: >
+          cmake -S .
+          -DCMAKE_C_COMPILER=gcc
+          -DCMAKE_BUILD_TYPE=Release
+          -DBUILD_SHARED_LIBS=OFF
+          -DCMAKE_C_FLAGS=${{matrix.build-targets.cFlags}}
+          -G "Unix Makefiles"
+      
+      - name: Build
+        run: cmake --build .
+      
+      - name: Test
+        run: ./${{matrix.build-targets.filename}} TEST
+      
+      - name: Strip (macOS)
+        if: contains(matrix.build-targets.os, 'macos')
+        run: strip ${{matrix.build-targets.filename}}
+      
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{matrix.build-targets.uploadName}}
+          path: |
+            ${{matrix.build-targets.filename}}
+            LICENSE

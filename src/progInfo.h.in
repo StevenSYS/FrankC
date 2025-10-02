@@ -1,11 +1,22 @@
 #ifndef __PROGINFO__
 #define __PROGINFO__
 
-#define PROGRAM_NAME "@PROJECT_NAME@"
-#define PROGRAM_VERSION "@PROJECT_VERSION@"
+/* - Program - */
+#ifndef PROGRAM_PRE_RELEASE
+	#define PROGRAM_PRE_RELEASE 0
+#endif
 
+#define PROGRAM_NAME "@PROJECT_NAME@"
+#if PROGRAM_PRE_RELEASE
+	#define PROGRAM_VERSION "@PROJECT_VERSION@pre"
+#else
+	#define PROGRAM_VERSION "@PROJECT_VERSION@"
+#endif
+
+/* - Length - */
 #define LENGTH_INPUT 100
 
+/* - URL - */
 #define URL_SOURCE "https://github.com/StevenSYS/FrankC"
 
 #endif
