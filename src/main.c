@@ -17,14 +17,14 @@
 static char running = 1;
 
 /* https://stackoverflow.com/questions/59036713/how-do-i-convert-a-char-pointer-to-lower-case */
-static char *stringToLower(char *str) {
+static const char *stringToLower(char *str) {
 	char *ret = str;
 	
 	while (*str) {
 		*str = tolower(*str);
 		str++;
 	}
-	return ret;
+	return (const char *)ret;
 }
 
 int main(int argc, char *argv[]) {

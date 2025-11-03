@@ -1,11 +1,13 @@
 #ifndef __LIBFRANK__
 #define __LIBFRANK__
 
-void frank_chat(char *input);
+/* Functions */
+void frank_chat(const char *input);
 
 /* This function is here so you can use libFrank from Python */
-char *frank_getResponse();
+const char *frank_getResponse();
 
-extern char *frank_response;
+/* Externs */
+extern const char *frank_response; /* This variable is a `const` here so that nothing but the library can modify it */
 
 #endif
