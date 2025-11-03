@@ -11,6 +11,6 @@ Windows 98:
 
 ![win98](images/Win98.png "Windows 98 Screenshot")
 
-DOSBox-X:
+MS-DOS (DOSBox-X):
 
-![dosbox-x](images/DOS.png "DOSBox-X Screenshot")
+![dosbox-x](images/DOSBox-X.png "DOSBox-X Screenshot")
