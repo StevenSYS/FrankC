@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.11)
 
-project(FrankC LANGUAGES C VERSION 1.21)
+project(FrankC LANGUAGES C VERSION 1.22)
 
 option(BUILD_FOR_DOS "Build ${PROJECT_NAME} for DOS using DJGPP" OFF)
 option(BUILD_SHARED_LIBS "Build shared version of libFrank" OFF)
