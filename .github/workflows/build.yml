@@ -11,28 +11,28 @@ jobs:
             name: "Linux (x64)",
             os: "ubuntu-latest",
             cFlags: "",
-            uploadName: "FrankC-Linux_x64",
+            uploadName: "FrankC-Linux-x64",
             filename: "FrankC"
           }
           - {
             name: "Windows (x64)",
             os: "windows-latest",
             cFlags: "",
-            uploadName: "FrankC-Win_x64",
+            uploadName: "FrankC-Win-x64",
             filename: "FrankC.exe"
           }
           - {
             name: "macOS (x64)",
             os: "macos-15-intel",
             cFlags: "",
-            uploadName: "FrankC-Mac_x64",
+            uploadName: "FrankC-Mac-x64",
             filename: "FrankC"
           }
           - {
             name: "macOS (arm64e)",
             os: "macos-latest",
             cFlags: "",
-            uploadName: "FrankC-Mac_arm64e",
+            uploadName: "FrankC-Mac-arm64e",
             filename: "FrankC"
           }
     steps:
