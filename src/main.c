@@ -64,8 +64,6 @@ int main(int argc, char *argv[]) {
 			running = 0;
 		}
 	}
-	
 	printf("\nQuitting...\n");
-	
 	return 0;
 }
