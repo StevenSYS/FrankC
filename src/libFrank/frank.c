@@ -4,7 +4,7 @@
 #include "arrays.h"
 
 #define SIZEOFARRAY(_array) sizeof(_array) / sizeof(_array[0])
-#define STRINC(_str1, _str2) strstr(_str1, _str2) != NULL
+#define STRINC(_str1, _str2) (strstr(_str1, _str2) != NULL)
 #define ARRAYRANDOM(_array) (char *)_array[rand() % SIZEOFARRAY(_array)]
 
 #define LIBFRANK_ANGER_THRESHOLD 5
