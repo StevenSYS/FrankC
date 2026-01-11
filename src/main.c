@@ -1,8 +1,8 @@
 #include <stdio.h>
+#include <ctype.h>
+#include <frank.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include <libFrank/frank.h>
 #ifdef _WIN32
 	#include <windows.h>
 #else

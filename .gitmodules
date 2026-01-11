@@ -1,0 +1,4 @@
+[submodule "src/libFrank"]
+	path = src/libFrank
+	url = https://github.com/StevenSYS/FrankC
+	branch = library
