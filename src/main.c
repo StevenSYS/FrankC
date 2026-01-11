@@ -54,7 +54,9 @@ int main(int argc, char *argv[]) {
 	
 	while (running) {
 		printf("\n%s\nAsk Frank something: ", frank_response);
-		fgets(input, LENGTH_INPUT, stdin);
+		if (fgets(input, LENGTH_INPUT, stdin) == NULL) {
+			running = 0;
+		}
 		
 		/* https://stackoverflow.com/questions/1247989/how-do-you-allow-spaces-to-be-entered-using-scanf */
 		if (strlen(input) > 1 && input[strlen(input) - 1] == '\n') {
