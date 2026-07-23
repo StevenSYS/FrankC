@@ -6,7 +6,6 @@
 
 #define SIZEOFA(_array) (sizeof(_array) / sizeof(*_array))
 #define STRINC(_str1, _str2) (strstr(_str1, _str2) != NULL)
-#define ARR_RAND(_array, _size) (_array[rand() % _size])
 
 #define RAND_RESPONSE(_arr) randResponse(_arr, SIZEOFA(_arr))
 
