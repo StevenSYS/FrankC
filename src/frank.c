@@ -1,13 +1,18 @@
+#include <limits.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "internal/arrays.h"
 
-#define SIZEOFARRAY(_array) sizeof(_array) / sizeof(_array[0])
+#define SIZEOFA(_array) (sizeof(_array) / sizeof(*_array))
 #define STRINC(_str1, _str2) (strstr(_str1, _str2) != NULL)
-#define ARRAYRANDOM(_array) (char *)_array[rand() % SIZEOFARRAY(_array)]
+#define ARR_RAND(_array, _size) (_array[rand() % _size])
 
-#define LIBFRANK_ANGER_THRESHOLD 5
+#define RAND_RESPONSE(_arr) randResponse(_arr, SIZEOFA(_arr))
+
+#define ANGER_THRESHOLD 5
+
+#define MAX_ANGER UCHAR_MAX
 
 static char isLocked = 0;
 
@@ -16,24 +21,21 @@ static unsigned char angerLevel = 0;
 char *frank_response = "Frank is waiting...";
 
 static char isBoopingSnoot(const char *input) {
-	char found = 0;
-	unsigned char i;
+	size_t i;
 	
-	for (i = 0; i < SIZEOFARRAY(boopingSnootWords); i++) {
+	for (i = 0; i < SIZEOFA(boopingSnootWords); i++) {
 		if (STRINC(input, boopingSnootWords[i])) {
-			found = 1;
-			break;
+			return 1;
 		}
 	}
-	
-	return found;
+	return 0;
 }
 
 static char isDenyingRat(const char *input) {
 	char foundVariation = 0;
-	unsigned char i;
+	size_t i;
 	
-	for (i = 0; i < SIZEOFARRAY(typoVariations); i++) {
+	for (i = 0; i < SIZEOFA(typoVariations); i++) {
 		if (STRINC(input, typoVariations[i])) {
 			foundVariation = 1;
 			break;
@@ -62,6 +64,14 @@ static char isDenyingRat(const char *input) {
 	);
 }
 
+static void randResponse(
+	const char *arr[],
+	size_t size
+) {
+	frank_response = (char *)arr[rand() % size];
+	return;
+}
+
 void frank_chat(const char *input) {
 	if (isLocked) {
 		if (STRINC(input, "dingus")) {
@@ -72,11 +82,14 @@ void frank_chat(const char *input) {
 			frank_response = "Frank is digesting. You need to say the magic word to wake her up.";
 		}
 	} else if (isDenyingRat(input)) { /* In the original, it checks for "rat" and "give" or "feed" before checking this */
-		angerLevel++;
-		if (angerLevel < LIBFRANK_ANGER_THRESHOLD) {
-			frank_response = ARRAYRANDOM(sadResponses);
+		if (angerLevel < MAX_ANGER) { /* Added for safety */
+			angerLevel++;
+		}
+		
+		if (angerLevel < ANGER_THRESHOLD) {
+			RAND_RESPONSE(sadResponses);
 		} else {
-			frank_response = ARRAYRANDOM(highAngerResponses);
+			RAND_RESPONSE(highAngerResponses);
 		}
 	} else if (STRINC(input, "rat") && (STRINC(input, "give") || STRINC(input, "feed"))) {
 		if (!(rand() % 10)) {
@@ -90,23 +103,23 @@ void frank_chat(const char *input) {
 				" Frank is digesting. You need to say the magic word to wake her up.";
 			isLocked = 1;
 		} else {
-			frank_response = ARRAYRANDOM(feedingFailureResponses);
+			RAND_RESPONSE(feedingFailureResponses);
 		}
-	} else if (angerLevel >= LIBFRANK_ANGER_THRESHOLD) {
-		frank_response = ARRAYRANDOM(highAngerResponses);
+	} else if (angerLevel >= ANGER_THRESHOLD) {
+		RAND_RESPONSE(highAngerResponses);
 	} else if (STRINC(input, "quail")) {
 		frank_response = "FRANK IS BANNED FROM QUAILS.";
 	} else if (isBoopingSnoot(input)) {
-		frank_response = ARRAYRANDOM(boopingSnootResponses);
+		RAND_RESPONSE(boopingSnootResponses);
 	} else if (STRINC(input, "rat")) {
-		frank_response = ARRAYRANDOM(positiveRatResponses);
+		RAND_RESPONSE(positiveRatResponses);
 	} else {
-		frank_response = ARRAYRANDOM(neutralResponses);
+		RAND_RESPONSE(neutralResponses);
 	}
 	return;
 }
 
-/* This function is here so you can use libFrank from Python */
+/* This function is here so you can use libFrank from something like Python (ew) */
 const char *frank_getResponse() {
 	return frank_response;
 }
