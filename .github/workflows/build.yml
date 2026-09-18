@@ -64,4 +64,3 @@ jobs:
           name: ${{matrix.build-targets.uploadName}}
           path: |
             ${{matrix.build-targets.filename}}
-            LICENSE
