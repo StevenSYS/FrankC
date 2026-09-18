@@ -16,15 +16,19 @@
 
 static char running = 1;
 
-/* https://stackoverflow.com/questions/59036713/how-do-i-convert-a-char-pointer-to-lower-case */
-static const char *stringToLower(char *str) {
-	char *ret = str;
+static char *toLower(char *str) {
+	char *tmp = str;
 	
-	while (*str) {
-		*str = tolower(*str);
-		str++;
+	while (tmp[0]) {
+		if (
+			tmp[0] >= 'A' &&
+			tmp[0] <= 'Z'
+		) {
+			tmp[0] += ('a' - 'A');
+		}
+		tmp++;
 	}
-	return (const char *)ret;
+	return str;
 }
 
 int main(int argc, char *argv[]) {
@@ -37,7 +41,7 @@ int main(int argc, char *argv[]) {
 	srand(time(NULL));
 	#endif
 	
-	printf(PROGRAM_NAME " v" PROGRAM_VERSION " - The Frank Chatbot from dingusland.fun ported to C\n");
+	printf(PROGRAM_NAME " v" PROGRAM_VERSION " - The Frank Chatbot formerly on dingusland.fun ported to C\n");
 	printf("Source Code: " URL_SOURCE "\n");
 	
 	for (i = 0; i < SIZEOFARRAY(frankArt); i++) {
@@ -59,9 +63,12 @@ int main(int argc, char *argv[]) {
 		}
 		
 		/* https://stackoverflow.com/questions/1247989/how-do-you-allow-spaces-to-be-entered-using-scanf */
-		if (strlen(input) > 1 && input[strlen(input) - 1] == '\n') {
+		if (
+			strlen(input) > 1 &&
+			input[strlen(input) - 1] == '\n'
+		) {
 			input[strlen(input) - 1] = '\0';
-			frank_chat(stringToLower(input));
+			frank_chat(toLower(input));
 		} else if (strlen(input) <= 1) {
 			running = 0;
 		}

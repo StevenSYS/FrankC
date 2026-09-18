@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.14)
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 set(CMAKE_BUILD_RPATH_USE_ORIGIN TRUE)
 
-project(FrankC LANGUAGES C VERSION 1.1)
+project(FrankC LANGUAGES C VERSION 1.23)
 
 option(BUILD_FOR_DOS "Build ${PROJECT_NAME} for DOS using DJGPP" OFF)
 option(BUILD_SHARED_LIBS "Build the libraries as shared libraries" OFF)

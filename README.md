@@ -1,7 +1,7 @@
 # [FrankC](https://github.com/StevenSYS/FrankC)
-The Frank Chatbot formerly on [dingusland.fun](https://dingusland.fun/) ported from JavaScript to C.
+The Frank Chatbot formerly on [dingusland.fun](https://dingusland.fun/) as a [CLI](https://en.wikipedia.org/wiki/Command-line_interface) program written in C.
 
-Screenshots:
+## Screenshots
 
 Arch Linux:
 
