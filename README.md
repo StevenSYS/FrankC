@@ -1,5 +1,5 @@
 # [FrankC](https://github.com/StevenSYS/FrankC)
-The Frank Chatbot from [dingusland.fun](https://dingusland.fun/) ported to C
+The Frank Chatbot formerly on [dingusland.fun](https://dingusland.fun/) ported from JavaScript to C.
 
 Screenshots:
 
